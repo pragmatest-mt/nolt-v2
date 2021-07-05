@@ -12,12 +12,7 @@ import java.util.concurrent.TimeUnit;
 public class NoltApplication {
 
 	public static void main(String[] args) throws InterruptedException {
-
 		ConfigurableApplicationContext context = SpringApplication.run(NoltApplication.class, args);
-
-		CreateOrderListener listener = context.getBean(CreateOrderListener.class);
-
-		listener.latch.await(10, TimeUnit.SECONDS);
 	}
 
 }

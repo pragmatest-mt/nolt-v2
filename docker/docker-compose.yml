@@ -51,3 +51,10 @@ services:
       - kafka
     ports:
       - "7000:8080"
+    volumes:
+      - source: ..
+        target: /app
+        type: bind
+
+volumes:
+  ..:
