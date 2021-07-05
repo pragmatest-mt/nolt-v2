@@ -1,6 +1,6 @@
 package com.pragmatest.nolt.configuration;
 
-import com.pragmatest.nolt.messaging.listeners.CreateOrderListener;
+import com.pragmatest.nolt.messaging.commands.CreateOrderCommand;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +10,9 @@ import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+import org.springframework.kafka.listener.SeekToCurrentErrorHandler;
+import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
+import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,42 +20,30 @@ import java.util.Map;
 @EnableKafka
 @Configuration
 public class KafkaConsumerConfig {
-//
-//    @Value(value = "${kafka.bootstrapAddress}")
-//    private String bootstrapAddress;
-//
-//    @Value(value = "${create.order.topic}")
-//    private String createOrderTopicName;
-//
-//    @Value(value = "${create.order.consumer.group.id}")
-//    private String groupId;
-//
-//    @Bean
-//    public ConsumerFactory<String, String> consumerFactory() {
-//        Map<String, Object> props = new HashMap<>();
-//        props.put(
-//                ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
-//                bootstrapAddress);
-//        props.put(
-//                ConsumerConfig.GROUP_ID_CONFIG,
-//                groupId);
-//        props.put(
-//                ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
-//                StringDeserializer.class);
-//        props.put(
-//                ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
-//                StringDeserializer.class);
-//        return new DefaultKafkaConsumerFactory<>(props);
-//    }
-//
-//    @Bean
-//    public ConcurrentKafkaListenerContainerFactory<String, String>
-//    kafkaListenerContainerFactory() {
-//
-//        ConcurrentKafkaListenerContainerFactory<String, String> factory =
-//                new ConcurrentKafkaListenerContainerFactory<>();
-//        factory.setConsumerFactory(consumerFactory());
-//        return factory;
-//    }
 
+    @Value(value = "${spring.kafka.consumer.bootstrap-servers}")
+    private String bootstrapAddress;
+
+    @Value(value = "${spring.kafka.consumer.group-id}")
+    private String groupId;
+
+    public ConsumerFactory<String, CreateOrderCommand> createCommandConsumerFactory() {
+        Map<String, Object> props = new HashMap<>();
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
+
+        return new DefaultKafkaConsumerFactory<>(
+                props,
+                new StringDeserializer(),
+                new ErrorHandlingDeserializer(new JsonDeserializer<>(CreateOrderCommand.class)));
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, CreateOrderCommand> createCommandKafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, CreateOrderCommand> factory =
+                new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(createCommandConsumerFactory());
+        factory.setErrorHandler(new SeekToCurrentErrorHandler());
+        return factory;
+    }
 }
