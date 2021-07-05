@@ -1,8 +1,10 @@
 package com.pragmatest.nolt.configuration;
 
 import com.pragmatest.nolt.messaging.commands.CreateOrderCommand;
+import com.pragmatest.nolt.messaging.events.OrderCreatedEvent;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +12,7 @@ import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.listener.SeekToCurrentErrorHandler;
 import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
@@ -26,6 +29,9 @@ public class KafkaConsumerConfig {
 
     @Value(value = "${spring.kafka.consumer.group-id}")
     private String groupId;
+
+    @Autowired
+    private KafkaTemplate<String, OrderCreatedEvent> orderCreatedEventKafkaTemplate;
 
     public ConsumerFactory<String, CreateOrderCommand> createCommandConsumerFactory() {
         Map<String, Object> props = new HashMap<>();
@@ -44,6 +50,7 @@ public class KafkaConsumerConfig {
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(createCommandConsumerFactory());
         factory.setErrorHandler(new SeekToCurrentErrorHandler());
+        factory.setReplyTemplate(orderCreatedEventKafkaTemplate);
         return factory;
     }
 }

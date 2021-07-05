@@ -19,6 +19,10 @@ public class KafkaTopicConfig {
     @Value(value = "${create.order.topic}")
     private String createOrderTopicName;
 
+    @Value(value = "${order.created.topic}")
+    private String orderCreatedTopicName;
+
+
     @Bean
     public KafkaAdmin kafkaAdmin() {
         Map<String, Object> configs = new HashMap<>();
@@ -29,5 +33,10 @@ public class KafkaTopicConfig {
     @Bean
     public NewTopic createOrderTopic() {
         return new NewTopic(createOrderTopicName, 1, (short) 1);
+    }
+
+    @Bean
+    public NewTopic orderCreatedTopic() {
+        return new NewTopic(orderCreatedTopicName, 1, (short) 1);
     }
 }
