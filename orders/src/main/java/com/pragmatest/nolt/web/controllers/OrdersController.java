@@ -6,8 +6,11 @@ import com.pragmatest.nolt.web.responses.OrderResponse;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -21,17 +24,13 @@ public class OrdersController {
     @Autowired
     ModelMapper modelMapper;
 
-    @GetMapping("/orders")
-    List<OrderResponse> findAll() {
+    @PostMapping("/submit")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    void submit() {
 
-       List<Order> orders = ordersService.getOrders();
+       Order order = ordersService.submitOrder();
 
-        Type responseType = new TypeToken<List<OrderResponse>>() {
-        }.getType();
 
-        List<OrderResponse> response = modelMapper.map(orders, responseType);
-
-       return response;
     }
 
 

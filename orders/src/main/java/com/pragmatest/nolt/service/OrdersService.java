@@ -13,4 +13,6 @@ public interface OrdersService {
     OrderItem TryAddMenuItem(String userId, String menuItemId, int quantity);
 
     List<Order> getOrders();
+
+    Order submitOrder();
 }
