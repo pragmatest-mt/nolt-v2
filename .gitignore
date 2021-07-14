@@ -15,8 +15,8 @@ target/
 
 ### IntelliJ IDEA ###
 
-.idea
-!.idea/runConfigurations
+.idea/*
+!/.idea/runConfigurations/
 
 *.iws
 *.iml
