@@ -1,22 +1,18 @@
-package com.pragmatest.nolt.service.models;
+package com.pragmatest.nolt.web.requests;
 
 import java.util.List;
 
-public class Order {
+public class OrderRequest {
 
     String userId;
-    String id;
     List<OrderItem> orderItems;
 
-    public Order(String userId, String id, List<OrderItem> orderItems) {
+    public OrderRequest(String userId, List<OrderItem> orderItems) {
         this.userId = userId;
-        this.id = id;
         this.orderItems = orderItems;
     }
 
-    public Order(String userId, List<OrderItem> orderItems) {
-        this.userId = userId;
-        this.orderItems = orderItems;
+    public OrderRequest() {
     }
 
     public String getUserId() {
@@ -25,14 +21,6 @@ public class Order {
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public List<OrderItem> getOrderItems() {

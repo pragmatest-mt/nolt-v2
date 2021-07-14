@@ -25,6 +25,8 @@ public class KafkaTopicConfig {
     @Value(value = "${order.menu-item-added.topic}")
     private String menuItemAddedTopicName;
 
+    @Value(value = "${order.created.topic}")
+    private String orderSubmittedTopicName;
 
     @Bean
     public KafkaAdmin kafkaAdmin() {
@@ -46,5 +48,10 @@ public class KafkaTopicConfig {
     @Bean
     public NewTopic menuItemAddedTopic() {
         return new NewTopic(menuItemAddedTopicName, 1, (short) 1);
+    }
+
+    @Bean
+    public NewTopic orderSubmittedTopic() {
+        return new NewTopic(orderSubmittedTopicName, 1, (short) 1);
     }
 }

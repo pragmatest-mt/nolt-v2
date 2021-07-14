@@ -2,25 +2,22 @@ package com.pragmatest.nolt.service.models;
 
 public class OrderItem {
 
-    String orderId;
-    String menuItemId;
-    int quantity;
+    public String menuItemId;
+    public int quantity;
+    public String notes;
 
-    public OrderItem(String orderId, String menuItemId, int quantity) {
-        this.orderId = orderId;
+    public OrderItem(String menuItemId, int quantity, String notes) {
+        this.menuItemId = menuItemId;
+        this.quantity = quantity;
+        this.notes = notes;
+    }
+
+    public OrderItem(String menuItemId, int quantity) {
         this.menuItemId = menuItemId;
         this.quantity = quantity;
     }
 
     public OrderItem() {
-    }
-
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
     }
 
     public String getMenuItemId() {
@@ -37,5 +34,13 @@ public class OrderItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 }

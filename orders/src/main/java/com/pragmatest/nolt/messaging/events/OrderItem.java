@@ -1,29 +1,18 @@
-package com.pragmatest.nolt.data.entities;
+package com.pragmatest.nolt.messaging.events;
 
-import com.pragmatest.nolt.service.models.OrderItem;
-
-import javax.persistence.Embeddable;
-import java.util.UUID;
-
-@Embeddable
-public class OrderItemEntity {
+public class OrderItem {
 
     private String menuItemId;
     private int quantity;
     private String notes;
 
-    public OrderItemEntity(String menuItemId, int quantity, String notes) {
+    public OrderItem(String menuItemId, int quantity, String notes) {
         this.menuItemId = menuItemId;
         this.quantity = quantity;
         this.notes = notes;
     }
 
-    public OrderItemEntity(String menuItemId, int quantity) {
-        this.menuItemId = menuItemId;
-        this.quantity = quantity;
-    }
-
-    public OrderItemEntity() {
+    public OrderItem() {
     }
 
     public String getMenuItemId() {

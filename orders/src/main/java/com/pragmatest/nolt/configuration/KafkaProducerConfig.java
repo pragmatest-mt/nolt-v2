@@ -2,6 +2,7 @@ package com.pragmatest.nolt.configuration;
 
 import com.pragmatest.nolt.messaging.events.MenuItemAddedEvent;
 import com.pragmatest.nolt.messaging.events.OrderCreatedEvent;
+import com.pragmatest.nolt.messaging.events.OrderSubmittedEvent;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -48,5 +49,20 @@ public class KafkaProducerConfig {
     public KafkaTemplate<String, MenuItemAddedEvent> menuItemAddedKafkaTemplate() {
         return new KafkaTemplate<String, MenuItemAddedEvent>(menuItemAddedProducerFactory());
     }
+
+    @Bean
+    public ProducerFactory<String, OrderSubmittedEvent> orderSubmittedProducerFactory() {
+        Map<String, Object> props = new HashMap<>();
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
+        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        return new DefaultKafkaProducerFactory<>(props);
+    }
+
+    @Bean
+    public KafkaTemplate<String, OrderSubmittedEvent> orderSubmittedKafkaTemplate() {
+        return new KafkaTemplate<String, OrderSubmittedEvent>(orderSubmittedProducerFactory());
+    }
+
 
 }

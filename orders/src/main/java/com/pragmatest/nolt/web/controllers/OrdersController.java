@@ -2,6 +2,7 @@ package com.pragmatest.nolt.web.controllers;
 
 import com.pragmatest.nolt.service.OrdersService;
 import com.pragmatest.nolt.service.models.Order;
+import com.pragmatest.nolt.web.requests.OrderRequest;
 import com.pragmatest.nolt.web.responses.OrderResponse;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -26,10 +27,12 @@ public class OrdersController {
 
     @PostMapping("/submit")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    void submit() {
+    OrderResponse submit(OrderRequest orderRequest) {
 
-       Order order = ordersService.submitOrder();
+       Order order = ordersService.submitOrder(null);
+       OrderResponse orderResponse = modelMapper.map(order, OrderResponse.class);
 
+       return orderResponse;
 
     }
 

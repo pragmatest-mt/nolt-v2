@@ -36,19 +36,7 @@ public class AddToOrderHandler {
             groupId = "${spring.kafka.consumer.group-id}",
             containerFactory = "addToOrderCommandKafkaListenerContainerFactory")
     public void listenAddToOrder(AddToOrderCommand command) throws Exception {
-        System.out.println("Received Command in group: " + command);
 
-        Order createdOrder = ordersService.TryCreateOrder(command.getUserId());
-
-        if (createdOrder != null) {
-            orderCreatedProducer.send(new OrderCreatedEvent(command.getUserId(), createdOrder.getOrderId()));
-        }
-
-        OrderItem addedOrderItem = ordersService.TryAddMenuItem(command.getUserId(), command.getMenuItemId(), command.getQuantity());
-
-        if (addedOrderItem != null) {
-            menuItemAddedProducer.send(new MenuItemAddedEvent(addedOrderItem.getOrderId(), command.getUserId(), addedOrderItem.getMenuItemId(), addedOrderItem.getQuantity()));
-        }
     }
 }
 
