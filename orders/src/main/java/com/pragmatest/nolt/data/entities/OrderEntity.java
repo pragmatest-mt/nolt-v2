@@ -1,5 +1,7 @@
 package com.pragmatest.nolt.data.entities;
 
+import com.pragmatest.nolt.enums.OrderState;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
@@ -12,6 +14,8 @@ public class OrderEntity {
 
     private String userId;
 
+    private OrderState state;
+
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name="ORDER_ITEMS", joinColumns=@JoinColumn(name="ORDER_ID"))
     private List<OrderItemEntity> orderItems; // check on this
@@ -23,6 +27,7 @@ public class OrderEntity {
 
     public OrderEntity() {
         this.id = UUID.randomUUID().toString();
+        this.state = OrderState.SUBMITTED;
     }
 
     public String getId() {
@@ -47,5 +52,13 @@ public class OrderEntity {
 
     public void setOrderItems(List<OrderItemEntity> orderItems) {
         this.orderItems = orderItems;
+    }
+
+    public OrderState getState() {
+        return state;
+    }
+
+    public void setState(OrderState state) {
+        this.state = state;
     }
 }

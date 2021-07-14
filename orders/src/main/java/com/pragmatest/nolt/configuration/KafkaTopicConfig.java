@@ -16,17 +16,12 @@ public class KafkaTopicConfig {
     @Value(value = "${spring.kafka.consumer.bootstrap-servers}")
     private String bootstrapAddress;
 
-    @Value(value = "${order.add-to-order.topic}")
-    private String addToOrderTopicName;
-
-    @Value(value = "${order.created.topic}")
-    private String orderCreatedTopicName;
-
-    @Value(value = "${order.menu-item-added.topic}")
-    private String menuItemAddedTopicName;
-
-    @Value(value = "${order.created.topic}")
+    @Value(value = "${order.submitted.topic}")
     private String orderSubmittedTopicName;
+
+    @Value(value = "${order.accepted.topic}")
+    private String orderAcceptedTopicName;
+
 
     @Bean
     public KafkaAdmin kafkaAdmin() {
@@ -36,22 +31,12 @@ public class KafkaTopicConfig {
     }
 
     @Bean
-    public NewTopic addToOrderTopic() {
-        return new NewTopic(addToOrderTopicName, 1, (short) 1);
-    }
-
-    @Bean
-    public NewTopic orderCreatedTopic() {
-        return new NewTopic(orderCreatedTopicName, 1, (short) 1);
-    }
-
-    @Bean
-    public NewTopic menuItemAddedTopic() {
-        return new NewTopic(menuItemAddedTopicName, 1, (short) 1);
-    }
-
-    @Bean
     public NewTopic orderSubmittedTopic() {
         return new NewTopic(orderSubmittedTopicName, 1, (short) 1);
+    }
+
+    @Bean
+    public NewTopic orderAcceptedTopic() {
+        return new NewTopic(orderAcceptedTopicName, 1, (short) 1);
     }
 }

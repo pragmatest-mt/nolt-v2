@@ -11,4 +11,6 @@ public interface OrdersService {
     List<Order> getOrders();
 
     Order submitOrder(Order order);
+
+    Order acceptOrder(Order order);
 }

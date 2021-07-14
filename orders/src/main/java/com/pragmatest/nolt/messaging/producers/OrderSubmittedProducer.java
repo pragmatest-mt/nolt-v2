@@ -1,6 +1,5 @@
 package com.pragmatest.nolt.messaging.producers;
 
-import com.pragmatest.nolt.messaging.events.OrderCreatedEvent;
 import com.pragmatest.nolt.messaging.events.OrderSubmittedEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
