@@ -1,6 +1,6 @@
 package com.pragmatest.nolt.configuration;
 
-import com.pragmatest.nolt.messaging.commands.CreateOrderCommand;
+import com.pragmatest.nolt.messaging.commands.AddToOrderCommand;
 import com.pragmatest.nolt.messaging.events.OrderCreatedEvent;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -33,7 +33,7 @@ public class KafkaConsumerConfig {
     @Autowired
     private KafkaTemplate<String, OrderCreatedEvent> orderCreatedEventKafkaTemplate;
 
-    public ConsumerFactory<String, CreateOrderCommand> createCommandConsumerFactory() {
+    public ConsumerFactory<String, AddToOrderCommand> addToOrderCommandConsumerFactory() {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
@@ -41,16 +41,16 @@ public class KafkaConsumerConfig {
         return new DefaultKafkaConsumerFactory<>(
                 props,
                 new StringDeserializer(),
-                new ErrorHandlingDeserializer(new JsonDeserializer<>(CreateOrderCommand.class)));
+                new ErrorHandlingDeserializer(new JsonDeserializer<>(AddToOrderCommand.class)));
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, CreateOrderCommand> createCommandKafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, CreateOrderCommand> factory =
+    public ConcurrentKafkaListenerContainerFactory<String, AddToOrderCommand> addToOrderCommandKafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, AddToOrderCommand> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(createCommandConsumerFactory());
+        factory.setConsumerFactory(addToOrderCommandConsumerFactory());
         factory.setErrorHandler(new SeekToCurrentErrorHandler());
-        factory.setReplyTemplate(orderCreatedEventKafkaTemplate);
+        //factory.setReplyTemplate(orderCreatedEventKafkaTemplate);
         return factory;
     }
 }

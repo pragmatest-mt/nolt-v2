@@ -2,18 +2,20 @@ package com.pragmatest.nolt.messaging.events;
 
 public class OrderCreatedEvent {
 
+    String userId;
     String orderId;
-    String orderName;
-    String menuItemId;
 
-    public OrderCreatedEvent() {
-
+    public OrderCreatedEvent(String userId, String orderId) {
+        this.userId = userId;
+        this.orderId = orderId;
     }
 
-    public OrderCreatedEvent(String orderId, String orderName, String menuItemId) {
-        this.orderId = orderId;
-        this.orderName = orderName;
-        this.menuItemId = menuItemId;
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getOrderId() {
@@ -24,28 +26,10 @@ public class OrderCreatedEvent {
         this.orderId = orderId;
     }
 
-    public String getOrderName() {
-        return orderName;
-    }
-
-    public void setOrderName(String orderName) {
-        this.orderName = orderName;
-    }
-
-    public String getMenuItemId() {
-        return menuItemId;
-    }
-
-    public void setMenuItemId(String menuItemId) {
-        this.menuItemId = menuItemId;
-    }
-
     @Override
     public String toString() {
         return "OrderCreatedEvent{" +
                 "orderId='" + orderId + '\'' +
-                ", orderName='" + orderName + '\'' +
-                ", menuItemId='" + menuItemId + '\'' +
                 '}';
     }
 }
