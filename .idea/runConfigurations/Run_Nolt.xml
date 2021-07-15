@@ -3,9 +3,10 @@
     <deployment type="docker-compose.yml">
       <settings>
         <option name="envFilePath" value="" />
+        <option name="commandLineOptions" value="--build" />
         <option name="secondarySourceFiles">
           <list>
-            <option value="orders/docker/docker-compose.yml" />
+            <option value="customers/docker/docker-compose.yml" />
           </list>
         </option>
         <option name="sourceFilePath" value="docker/docker-compose.yml" />
