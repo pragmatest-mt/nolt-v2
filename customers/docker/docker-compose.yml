@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+
+  customers:
+    image: ${DOCKER_REGISTRY-}nolt-customers
+    build:
+      context: ..
+      dockerfile: ./Dockerfile
+    depends_on:
+      - kafka
+    ports:
+      - "7000:8080"
+    restart: always
+    volumes:
+      - source: ..
+        target: /app
+        type: bind
+      - source: ~/.m2
+        target: /root/.m2
+        type: bind
