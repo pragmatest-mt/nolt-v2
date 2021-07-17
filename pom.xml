@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>orders</module>
+        <module>customers</module>
 		<module>restaurants</module>
 	</modules>
 

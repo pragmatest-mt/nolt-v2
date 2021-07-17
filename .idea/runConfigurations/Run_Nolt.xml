@@ -2,12 +2,11 @@
   <configuration default="false" name="Run Nolt" type="docker-deploy" factoryName="docker-compose.yml" server-name="Docker">
     <deployment type="docker-compose.yml">
       <settings>
-        <option name="envFilePath" value="" />
         <option name="commandLineOptions" value="--build" />
         <option name="secondarySourceFiles">
           <list>
-            <option value="orders/docker/docker-compose.yml" />
             <option value="restaurants/docker/docker-compose.yml" />
+            <option value="customers/docker/docker-compose.yml" />
           </list>
         </option>
         <option name="sourceFilePath" value="docker/docker-compose.yml" />
