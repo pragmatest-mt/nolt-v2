@@ -43,5 +43,4 @@ services:
       PORT: 9021
 
 volumes:
-  ..:
   .m2:
