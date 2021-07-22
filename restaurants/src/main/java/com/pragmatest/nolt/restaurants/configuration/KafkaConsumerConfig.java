@@ -35,8 +35,9 @@ public class KafkaConsumerConfig {
         return new DefaultKafkaConsumerFactory<>(
                 props,
                 new StringDeserializer(),
-                new ErrorHandlingDeserializer(new JsonDeserializer<>(OrderSubmittedEvent.class)));
-    }
+                new ErrorHandlingDeserializer(new JsonDeserializer<>(OrderSubmittedEvent.class,
+                        false)));
+        }
 
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, OrderSubmittedEvent> orderSubmittedEventKafkaListenerContainerFactory() {
@@ -47,6 +48,4 @@ public class KafkaConsumerConfig {
 
         return factory;
     }
-
-
 }
