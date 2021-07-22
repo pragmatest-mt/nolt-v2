@@ -7,24 +7,27 @@ import java.util.Date;
 import java.util.List;
 
 public class OrderResponse {
-    String id;
+    String orderId;
     List<OrderItem> orderItems;
     OrderState orderState;
     Date estimatedReadyTime;
 
-    public OrderResponse(String id, List<OrderItem> orderItems, OrderState orderState, Date estimatedReadyTime) {
-        this.id = id;
+    public OrderResponse(String orderId, List<OrderItem> orderItems, OrderState orderState, Date estimatedReadyTime) {
+        this.orderId = orderId;
         this.orderItems = orderItems;
         this.orderState = orderState;
         this.estimatedReadyTime = estimatedReadyTime;
     }
 
-    public String getId() {
-        return id;
+    public OrderResponse() {
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     public List<OrderItem> getOrderItems() {

@@ -35,7 +35,8 @@ public class KafkaConsumerConfig {
         return new DefaultKafkaConsumerFactory<>(
                 props,
                 new StringDeserializer(),
-                new ErrorHandlingDeserializer(new JsonDeserializer<>(OrderAcceptedEvent.class)));
+                new ErrorHandlingDeserializer(new JsonDeserializer<>(OrderAcceptedEvent.class,
+                        false)));
     }
 
     @Bean

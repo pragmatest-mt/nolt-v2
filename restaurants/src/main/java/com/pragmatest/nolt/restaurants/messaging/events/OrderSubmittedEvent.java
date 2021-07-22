@@ -6,20 +6,23 @@ import java.util.List;
 
 public class OrderSubmittedEvent {
 
-    private String id;
+    private String orderId;
     private List<OrderItem> orderItems;
 
-    public OrderSubmittedEvent(String id, List<OrderItem> orderItems) {
-        this.id = id;
+    public OrderSubmittedEvent(String orderId, List<OrderItem> orderItems) {
+        this.orderId = orderId;
         this.orderItems = orderItems;
     }
 
-    public String getId() {
-        return id;
+    public OrderSubmittedEvent() {
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     public List<OrderItem> getOrderItems() {

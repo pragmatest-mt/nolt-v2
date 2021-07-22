@@ -10,7 +10,7 @@ import java.util.UUID;
 public class OrderEntity {
 
     @Id
-    private String id;
+    private String orderId;
 
     private String userId;
 
@@ -26,12 +26,12 @@ public class OrderEntity {
     }
 
     public OrderEntity() {
-        this.id = UUID.randomUUID().toString();
+        this.orderId = UUID.randomUUID().toString();
         this.state = OrderState.SUBMITTED;
     }
 
-    public String getId() {
-        return id;
+    public String getOrderId() {
+        return orderId;
     }
 
     public String getUserId() {

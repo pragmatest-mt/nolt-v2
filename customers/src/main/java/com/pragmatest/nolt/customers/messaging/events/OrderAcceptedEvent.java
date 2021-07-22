@@ -4,23 +4,23 @@ import java.util.Date;
 
 public class OrderAcceptedEvent {
 
-    String id;
+    String orderId;
     Date estimatedReadyTime;
 
-    public OrderAcceptedEvent(String id, Date estimatedReadyTime) {
-        this.id = id;
+    public OrderAcceptedEvent(String orderId, Date estimatedReadyTime) {
+        this.orderId = orderId;
         this.estimatedReadyTime = estimatedReadyTime;
     }
 
     public OrderAcceptedEvent() {
     }
 
-    public String getId() {
-        return id;
+    public String getOrderId() {
+        return orderId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     public Date getEstimatedReadyTime() {

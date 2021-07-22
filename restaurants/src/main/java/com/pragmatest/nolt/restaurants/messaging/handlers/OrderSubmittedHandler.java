@@ -6,7 +6,9 @@ import com.pragmatest.nolt.restaurants.service.models.Order;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderSubmittedHandler {
 
     @Autowired
@@ -18,7 +20,7 @@ public class OrderSubmittedHandler {
     @KafkaListener(
             topics = "${order.submitted.topic}",
             groupId = "${spring.kafka.consumer.group-id}",
-            containerFactory = "orderAcceptedEventKafkaListenerContainerFactory")
+            containerFactory = "orderSubmittedEventKafkaListenerContainerFactory")
     public void listenOrderSubmitted(OrderSubmittedEvent orderSubmittedEvent) {
         System.out.println("Received order submitted event: " + orderSubmittedEvent);
 

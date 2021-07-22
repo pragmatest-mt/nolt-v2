@@ -4,12 +4,12 @@ import java.util.List;
 
 public class OrderSubmittedEvent {
 
-    private String id;
+    private String orderId;
     private String userId;
     private List<OrderItem> orderItems;
 
-    public OrderSubmittedEvent(String id, String userId, List<OrderItem> orderItems) {
-        this.id = id;
+    public OrderSubmittedEvent(String orderId, String userId, List<OrderItem> orderItems) {
+        this.orderId = orderId;
         this.userId = userId;
         this.orderItems = orderItems;
     }
@@ -17,12 +17,12 @@ public class OrderSubmittedEvent {
     public OrderSubmittedEvent() {
     }
 
-    public String getId() {
-        return id;
+    public String getOrderId() {
+        return orderId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     public String getUserId() {
