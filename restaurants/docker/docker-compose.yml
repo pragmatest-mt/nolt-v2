@@ -6,7 +6,7 @@ services:
     image: ${DOCKER_REGISTRY-}nolt-restaurants
     build:
       context: ..
-      dockerfile: ./Dockerfile
+      dockerfile: restaurants/Dockerfile
     depends_on:
       - kafka
     ports:
