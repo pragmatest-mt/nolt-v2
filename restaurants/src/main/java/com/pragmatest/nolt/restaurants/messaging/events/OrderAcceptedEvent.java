@@ -1,9 +1,8 @@
-package com.pragmatest.nolt.customers.messaging.events;
+package com.pragmatest.nolt.restaurants.messaging.events;
 
 import java.util.Date;
 
 public class OrderAcceptedEvent {
-
     String orderId;
     Date estimatedReadyTime;
 

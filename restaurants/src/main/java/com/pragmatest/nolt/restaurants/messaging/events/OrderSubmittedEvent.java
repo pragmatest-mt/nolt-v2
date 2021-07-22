@@ -1,16 +1,16 @@
-package com.pragmatest.nolt.customers.messaging.events;
+package com.pragmatest.nolt.restaurants.messaging.events;
+
+import com.pragmatest.nolt.restaurants.service.models.OrderItem;
 
 import java.util.List;
 
 public class OrderSubmittedEvent {
 
     private String orderId;
-    private String userId;
     private List<OrderItem> orderItems;
 
-    public OrderSubmittedEvent(String orderId, String userId, List<OrderItem> orderItems) {
+    public OrderSubmittedEvent(String orderId, List<OrderItem> orderItems) {
         this.orderId = orderId;
-        this.userId = userId;
         this.orderItems = orderItems;
     }
 
@@ -23,14 +23,6 @@ public class OrderSubmittedEvent {
 
     public void setOrderId(String orderId) {
         this.orderId = orderId;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
     public List<OrderItem> getOrderItems() {

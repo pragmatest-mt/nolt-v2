@@ -5,12 +5,12 @@ import java.util.List;
 public class Order {
 
     String userId;
-    String id;
+    String orderId;
     List<OrderItem> orderItems;
 
-    public Order(String userId, String id, List<OrderItem> orderItems) {
+    public Order(String userId, String orderId, List<OrderItem> orderItems) {
         this.userId = userId;
-        this.id = id;
+        this.orderId = orderId;
         this.orderItems = orderItems;
     }
 
@@ -30,12 +30,12 @@ public class Order {
         this.userId = userId;
     }
 
-    public String getId() {
-        return id;
+    public String getOrderId() {
+        return orderId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     public List<OrderItem> getOrderItems() {

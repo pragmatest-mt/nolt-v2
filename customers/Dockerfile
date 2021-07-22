@@ -1,6 +1,6 @@
 FROM maven:3.6.3-jdk-11
 
-WORKDIR /app/orders
+WORKDIR /app/customers
 
 COPY ./customers/pom.xml ./pom.xml
 RUN mvn dependency:go-offline

@@ -1,6 +1,6 @@
-package com.pragmatest.nolt.customers.configuration;
+package com.pragmatest.nolt.restaurants.configuration;
 
-import com.pragmatest.nolt.customers.messaging.events.OrderAcceptedEvent;
+import com.pragmatest.nolt.restaurants.messaging.events.OrderSubmittedEvent;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,7 +27,7 @@ public class KafkaConsumerConfig {
     @Value(value = "${spring.kafka.consumer.group-id}")
     private String groupId;
 
-    public ConsumerFactory<String, OrderAcceptedEvent> orderAcceptedEventConsumerFactory() {
+    public ConsumerFactory<String, OrderSubmittedEvent> orderSubmittedEventConsumerFactory() {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
@@ -35,16 +35,17 @@ public class KafkaConsumerConfig {
         return new DefaultKafkaConsumerFactory<>(
                 props,
                 new StringDeserializer(),
-                new ErrorHandlingDeserializer(new JsonDeserializer<>(OrderAcceptedEvent.class,
+                new ErrorHandlingDeserializer(new JsonDeserializer<>(OrderSubmittedEvent.class,
                         false)));
-    }
+        }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, OrderAcceptedEvent> orderAcceptedEventKafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, OrderAcceptedEvent> factory =
+    public ConcurrentKafkaListenerContainerFactory<String, OrderSubmittedEvent> orderSubmittedEventKafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, OrderSubmittedEvent> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(orderAcceptedEventConsumerFactory());
+        factory.setConsumerFactory(orderSubmittedEventConsumerFactory());
         factory.setErrorHandler(new SeekToCurrentErrorHandler());
+
         return factory;
     }
 }
