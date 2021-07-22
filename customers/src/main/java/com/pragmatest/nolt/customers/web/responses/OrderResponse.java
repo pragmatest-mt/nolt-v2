@@ -6,12 +6,12 @@ import java.util.List;
 
 public class OrderResponse {
 
-    String id;
+    String orderId;
     String userId;
     List<OrderItem> orderItems;
 
-    public OrderResponse(String id, String userId, List<OrderItem> orderItems) {
-        this.id = id;
+    public OrderResponse(String orderId, String userId, List<OrderItem> orderItems) {
+        this.orderId = orderId;
         this.userId = userId;
         this.orderItems = orderItems;
     }
@@ -19,12 +19,12 @@ public class OrderResponse {
     public OrderResponse() {
     }
 
-    public String getId() {
-        return id;
+    public String getOrderId() {
+        return orderId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     public String getUserId() {
