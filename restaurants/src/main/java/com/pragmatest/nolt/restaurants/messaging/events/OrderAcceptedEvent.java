@@ -6,8 +6,8 @@ public class OrderAcceptedEvent {
     String orderId;
     Date estimatedReadyTime;
 
-    public OrderAcceptedEvent(String id, Date estimatedReadyTime) {
-        this.orderId = id;
+    public OrderAcceptedEvent(String orderId, Date estimatedReadyTime) {
+        this.orderId = orderId;
         this.estimatedReadyTime = estimatedReadyTime;
     }
 

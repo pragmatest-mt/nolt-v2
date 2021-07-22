@@ -12,6 +12,15 @@ public class Order {
     OrderState orderState;
     Date estimatedReadyTime;
 
+    public Order(String orderId, List<OrderItem> orderItems, OrderState orderState) {
+        this.orderId = orderId;
+        this.orderItems = orderItems;
+        this.orderState = orderState;
+    }
+
+    public Order() {
+    }
+
     public Date getEstimatedReadyTime() {
         return estimatedReadyTime;
     }
@@ -41,12 +50,6 @@ public class Order {
     }
 
     public void setOrderState(OrderState orderState) {
-        this.orderState = orderState;
-    }
-
-    public Order(String id, List<OrderItem> orderItems, OrderState orderState) {
-        this.orderId = id;
-        this.orderItems = orderItems;
         this.orderState = orderState;
     }
 }
