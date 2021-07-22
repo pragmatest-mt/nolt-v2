@@ -7,6 +7,7 @@
           <list>
             <option value="restaurants/docker/docker-compose.yml" />
             <option value="customers/docker/docker-compose.yml" />
+            <option value="gateway/docker/docker-compose.yml" />
           </list>
         </option>
         <option name="sourceFilePath" value="docker/docker-compose.yml" />
