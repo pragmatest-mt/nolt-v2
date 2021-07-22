@@ -20,6 +20,13 @@ public class OrderEntity {
     @CollectionTable(name="ORDER_ITEMS", joinColumns=@JoinColumn(name="ORDER_ID"))
     private List<OrderItemEntity> orderItems; // check on this
 
+    public OrderEntity(String orderId, String userId, OrderState state, List<OrderItemEntity> orderItems) {
+        this.orderId = orderId;
+        this.userId = userId;
+        this.state = state;
+        this.orderItems = orderItems;
+    }
+
     public OrderEntity(String userId) {
         this();
         this.userId = userId;
