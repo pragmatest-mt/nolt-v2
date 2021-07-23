@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +23,7 @@ public class OrdersController {
 
     @PostMapping("/submit")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    OrderResponse submit(OrderRequest orderRequest) {
+    OrderResponse submit(@RequestBody OrderRequest orderRequest) {
 
        Order order = modelMapper.map(orderRequest, Order.class);
        order = ordersService.submitOrder(order);
