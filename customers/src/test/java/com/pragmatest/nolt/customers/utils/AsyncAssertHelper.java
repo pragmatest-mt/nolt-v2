@@ -1,4 +1,4 @@
-package com.pragmatest.nolt.customers.messaging.handlers.utils;
+package com.pragmatest.nolt.customers.utils;
 
 import org.awaitility.core.ConditionTimeoutException;
 import org.springframework.stereotype.Component;

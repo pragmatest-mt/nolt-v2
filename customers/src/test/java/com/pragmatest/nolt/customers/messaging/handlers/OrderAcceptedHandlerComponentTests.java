@@ -4,7 +4,7 @@ import com.pragmatest.nolt.customers.data.entities.OrderEntity;
 import com.pragmatest.nolt.customers.data.entities.OrderItemEntity;
 import com.pragmatest.nolt.customers.enums.OrderState;
 import com.pragmatest.nolt.customers.messaging.events.OrderAcceptedEvent;
-import com.pragmatest.nolt.customers.messaging.handlers.utils.AsyncAssertHelper;
+import com.pragmatest.nolt.customers.utils.AsyncAssertHelper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
