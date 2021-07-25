@@ -1,8 +1,9 @@
 package com.pragmatest.nolt.restaurants.data.entities;
 
 import com.pragmatest.nolt.restaurants.enums.OrderState;
-
+import com.pragmatest.nolt.restaurants.helpers.HelperMethods;
 import javax.persistence.*;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -39,7 +40,11 @@ public class OrderEntity {
     public OrderEntity() {
         this.orderId = UUID.randomUUID().toString();
         this.state = OrderState.SUBMITTED;
-        this.estimatedReadyTime = new Date(System.currentTimeMillis());
+        try {
+            this.estimatedReadyTime = HelperMethods.generateDeliveryDate(1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getOrderId() {

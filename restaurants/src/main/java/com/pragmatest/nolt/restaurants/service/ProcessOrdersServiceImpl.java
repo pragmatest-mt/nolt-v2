@@ -3,6 +3,7 @@ package com.pragmatest.nolt.restaurants.service;
 import com.pragmatest.nolt.restaurants.data.entities.OrderEntity;
 import com.pragmatest.nolt.restaurants.data.repositories.OrdersRepository;
 import com.pragmatest.nolt.restaurants.enums.OrderState;
+import com.pragmatest.nolt.restaurants.helpers.HelperMethods;
 import com.pragmatest.nolt.restaurants.messaging.events.OrderAcceptedEvent;
 import com.pragmatest.nolt.restaurants.messaging.producers.OrderAcceptedProducer;
 import com.pragmatest.nolt.restaurants.service.models.Order;
@@ -10,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.Date;
 
 @Service
@@ -26,7 +28,6 @@ public class ProcessOrdersServiceImpl implements ProcessOrdersService {
 
     @Override
     public Order acceptOrder(String orderId) {
-
         OrderEntity orderEntity = ordersRepository.findByOrderId(orderId);
 
         if (OrderState.ACCEPTED.equals(orderEntity.getState())) {
@@ -34,7 +35,12 @@ public class ProcessOrdersServiceImpl implements ProcessOrdersService {
         }
 
         orderEntity.setState(OrderState.ACCEPTED);
-        orderEntity.setEstimatedReadyTime(new Date(System.currentTimeMillis()));
+
+        try {
+            orderEntity.setEstimatedReadyTime(HelperMethods.generateDeliveryDate(1));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         ordersRepository.save(orderEntity);
 

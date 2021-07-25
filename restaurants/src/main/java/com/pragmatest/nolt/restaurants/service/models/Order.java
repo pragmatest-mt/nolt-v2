@@ -12,10 +12,11 @@ public class Order {
     OrderState orderState;
     Date estimatedReadyTime;
 
-    public Order(String orderId, List<OrderItem> orderItems, OrderState orderState) {
+    public Order(String orderId, List<OrderItem> orderItems, OrderState orderState, Date estimatedReadyTime) {
         this.orderId = orderId;
         this.orderItems = orderItems;
         this.orderState = orderState;
+        this.estimatedReadyTime = estimatedReadyTime;
     }
 
     public Order() {
