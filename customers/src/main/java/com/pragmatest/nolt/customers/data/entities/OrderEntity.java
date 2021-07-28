@@ -18,7 +18,7 @@ public class OrderEntity {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name="ORDER_ITEMS", joinColumns=@JoinColumn(name="ORDER_ID"))
-    private List<OrderItemEntity> orderItems; // check on this
+    private List<OrderItemEntity> orderItems;
 
     public OrderEntity(String orderId, String userId, OrderState state, List<OrderItemEntity> orderItems) {
         this.orderId = orderId;

@@ -47,12 +47,12 @@ class OrdersControllerComponentTests {
     @Test
     public void whenOrderIsSubmitted_thenOrderIsSavedAndMessageIsPublished() {
 
-        //// Act
+        //// Arrange
 
         OrderRequest orderRequest = new OrderRequest("Andrea", List.of(new OrderItem("Burger", 1, "Extra Coleslaw")));
         String endpoint = "/submit";
 
-        //// Arrange
+        //// Act
 
         ResponseEntity<OrderResponse> response = testRestTemplate.postForEntity(endpoint, orderRequest, OrderResponse.class);
 
