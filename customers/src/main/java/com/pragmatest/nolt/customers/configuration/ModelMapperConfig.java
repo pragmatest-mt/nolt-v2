@@ -17,7 +17,6 @@ public class ModelMapperConfig {
 
         addOrderRequestToOrderMapping(modelMapper);
 
-
         return modelMapper;
     }
 
