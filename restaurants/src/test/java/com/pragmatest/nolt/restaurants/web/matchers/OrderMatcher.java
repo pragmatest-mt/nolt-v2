@@ -17,11 +17,6 @@ public class OrderMatcher implements ArgumentMatcher<Order> {
         if (left == right) return true;
         if (right == null) return false;
 
-        return  left.getOrderId().equals(right.getOrderId()) &&
-                left.getOrderState().equals(right.getOrderState()) &&
-                //TODO check on how to to implement a future date for this
-                //left.getEstimatedReadyTime().equals(right.getEstimatedReadyTime()) &&
-                DeepEquals.deepEquals(left.getOrderItems(),
-                        right.getOrderItems());
+        return DeepEquals.deepEquals(left, right);
     }
 }
