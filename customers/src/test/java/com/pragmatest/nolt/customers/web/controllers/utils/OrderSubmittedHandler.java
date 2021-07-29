@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderSubmittedHandler {
 
-    OrderSubmittedEvent eventReceived = null;
+    static OrderSubmittedEvent eventReceived = null;
 
     @KafkaListener(
             topics = "${order.submitted.topic}",
