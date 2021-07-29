@@ -1,9 +1,8 @@
 package com.pragmatest.nolt.restaurants.data.entities;
 
 import com.pragmatest.nolt.restaurants.enums.OrderState;
-import com.pragmatest.nolt.restaurants.helpers.HelperMethods;
+
 import javax.persistence.*;
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -24,9 +23,15 @@ public class OrderEntity {
     @CollectionTable(name="ORDER_ITEMS", joinColumns=@JoinColumn(name="ORDER_ID"))
     private List<OrderItemEntity> orderItems; // check on this
 
-    public OrderEntity(String userId) {
+    public OrderEntity(String userId, Date estimatedReadyTime) {
         this();
         this.userId = userId;
+        this.estimatedReadyTime = estimatedReadyTime;
+    }
+
+    public OrderEntity() {
+        this.orderId = UUID.randomUUID().toString();
+        this.state = OrderState.SUBMITTED;
     }
 
     public Date getEstimatedReadyTime() {
@@ -35,16 +40,6 @@ public class OrderEntity {
 
     public void setEstimatedReadyTime(Date estimatedReadyTime) {
         this.estimatedReadyTime = estimatedReadyTime;
-    }
-
-    public OrderEntity() {
-        this.orderId = UUID.randomUUID().toString();
-        this.state = OrderState.SUBMITTED;
-        try {
-            this.estimatedReadyTime = HelperMethods.generateDeliveryDate(1);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
     }
 
     public String getOrderId() {
@@ -79,4 +74,3 @@ public class OrderEntity {
         this.state = state;
     }
 }
-
