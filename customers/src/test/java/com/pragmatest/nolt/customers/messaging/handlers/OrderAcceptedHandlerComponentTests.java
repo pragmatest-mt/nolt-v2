@@ -20,7 +20,7 @@ import java.sql.Date;
 import java.time.Instant;
 import java.util.List;
 
-@SpringBootTest
+@SpringBootTest(properties = {"kafka.enabled=true"})
 @AutoConfigureTestEntityManager
 @DirtiesContext
 @EmbeddedKafka(partitions = 1, brokerProperties = { "listeners=PLAINTEXT://localhost:9092", "port=9092" })

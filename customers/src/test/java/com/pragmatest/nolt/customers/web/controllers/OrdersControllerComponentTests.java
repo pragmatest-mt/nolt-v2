@@ -23,7 +23,7 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = "kafka.enabled=true")
 @AutoConfigureTestEntityManager
 @DirtiesContext
 @EmbeddedKafka(partitions = 1, brokerProperties = { "listeners=PLAINTEXT://localhost:9092", "port=9092" })
@@ -34,6 +34,7 @@ class OrdersControllerComponentTests {
 
     @Autowired
     private TransactionTemplate transactionTemplate;
+
 
     @Autowired
     private TestEntityManager testEntityManager;
