@@ -9,8 +9,5 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>customers</module>
-		<module>restaurants</module>
-		<module>gateway</module>
 	</modules>
 </project>
