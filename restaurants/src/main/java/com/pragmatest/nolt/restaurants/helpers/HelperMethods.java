@@ -9,7 +9,7 @@ public class HelperMethods {
 
     static SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMddHHmm");
 
-    public static Date generateDeliveryDate(int hours) throws ParseException {
+    public static Date generateEstimatedDeliveryTime(int hours) throws ParseException {
         Calendar calendar = Calendar.getInstance();
 
         Date date = new Date(System.currentTimeMillis());
