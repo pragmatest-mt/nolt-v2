@@ -22,7 +22,7 @@ import java.util.List;
 
 @SpringBootTest(properties = {"kafka.enabled=true"})
 @AutoConfigureTestEntityManager
-@DirtiesContext
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @EmbeddedKafka(partitions = 1, brokerProperties = { "listeners=PLAINTEXT://localhost:9092", "port=9092" })
 class OrderAcceptedHandlerComponentTests {
 

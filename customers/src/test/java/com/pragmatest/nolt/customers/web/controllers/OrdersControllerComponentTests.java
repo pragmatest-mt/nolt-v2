@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = "kafka.enabled=true")
 @AutoConfigureTestEntityManager
-@DirtiesContext
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @EmbeddedKafka(partitions = 1, brokerProperties = { "listeners=PLAINTEXT://localhost:9092", "port=9092" })
 class OrdersControllerComponentTests {
 
@@ -34,7 +34,6 @@ class OrdersControllerComponentTests {
 
     @Autowired
     private TransactionTemplate transactionTemplate;
-
 
     @Autowired
     private TestEntityManager testEntityManager;
@@ -47,7 +46,6 @@ class OrdersControllerComponentTests {
 
     @Test
     public void whenOrderIsSubmitted_thenOrderIsSavedAndMessageIsPublished() {
-
         //// Arrange
 
         OrderRequest orderRequest = new OrderRequest("Andrea", List.of(new OrderItem("Burger", 1, "Extra Coleslaw")));
@@ -62,9 +60,7 @@ class OrdersControllerComponentTests {
         OrderEntity savedEntity = transactionTemplate.execute((conn) -> testEntityManager.find(OrderEntity.class, response.getBody().getOrderId()));
         assertThat(savedEntity.getUserId()).isEqualTo("Andrea");
 
-        helper.asyncAssert(() -> {
-            return orderSubmittedHandler.getEventReceived() != null;
-        });
+        helper.asyncAssert(() -> orderSubmittedHandler.getEventReceived() != null);
 
         OrderSubmittedEvent eventReceived = orderSubmittedHandler.getEventReceived();
         assertThat(eventReceived.getUserId()).isEqualTo("Andrea");
