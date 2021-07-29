@@ -1,7 +1,6 @@
-package com.pragmatest.nolt.restaurants.service.models;
+package com.pragmatest.nolt.restaurants.web.responses;
 
 public class OrderItem {
-
     String orderId;
     String menuItemId;
     int quantity;

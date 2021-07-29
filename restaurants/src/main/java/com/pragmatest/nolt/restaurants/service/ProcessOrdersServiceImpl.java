@@ -3,6 +3,7 @@ package com.pragmatest.nolt.restaurants.service;
 import com.pragmatest.nolt.restaurants.data.entities.OrderEntity;
 import com.pragmatest.nolt.restaurants.data.repositories.OrdersRepository;
 import com.pragmatest.nolt.restaurants.enums.OrderState;
+import com.pragmatest.nolt.restaurants.helpers.HelperMethods;
 import com.pragmatest.nolt.restaurants.messaging.events.OrderAcceptedEvent;
 import com.pragmatest.nolt.restaurants.messaging.producers.OrderAcceptedProducer;
 import com.pragmatest.nolt.restaurants.service.models.Order;
@@ -25,8 +26,7 @@ public class ProcessOrdersServiceImpl implements ProcessOrdersService {
     private OrderAcceptedProducer orderAcceptedProducer;
 
     @Override
-    public Order acceptOrder(String orderId) {
-
+    public Order acceptOrder(String orderId, Date estimatedReadyTime) {
         OrderEntity orderEntity = ordersRepository.findByOrderId(orderId);
 
         if (OrderState.ACCEPTED.equals(orderEntity.getState())) {
@@ -34,7 +34,8 @@ public class ProcessOrdersServiceImpl implements ProcessOrdersService {
         }
 
         orderEntity.setState(OrderState.ACCEPTED);
-        orderEntity.setEstimatedReadyTime(new Date(System.currentTimeMillis()));
+
+        orderEntity.setEstimatedReadyTime(estimatedReadyTime);
 
         ordersRepository.save(orderEntity);
 
