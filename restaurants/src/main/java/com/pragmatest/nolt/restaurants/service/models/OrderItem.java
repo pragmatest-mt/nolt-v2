@@ -7,6 +7,9 @@ public class OrderItem {
     int quantity;
     String notes;
 
+    public OrderItem() {
+    }
+
     public OrderItem(String orderId, String menuItemId, int quantity, String notes) {
         this.orderId = orderId;
         this.menuItemId = menuItemId;
@@ -14,7 +17,8 @@ public class OrderItem {
         this.notes = notes;
     }
 
-    public OrderItem() {
+    public OrderItem(String orderId, String menuItemId, int quantity) {
+        this(orderId, menuItemId, quantity, "");
     }
 
     public String getOrderId() {
