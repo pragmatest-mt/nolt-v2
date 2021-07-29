@@ -5,8 +5,11 @@ import com.pragmatest.nolt.restaurants.service.models.Order;
 import com.pragmatest.nolt.restaurants.web.responses.OrderResponse;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Date;
 
 @RestController
 public class OrdersController {
@@ -17,9 +20,9 @@ public class OrdersController {
     @Autowired
     ModelMapper modelMapper;
 
-    @PostMapping("/accept/{orderID}")
-    OrderResponse accept(String orderId) {
-        Order order = processOrdersService.acceptOrder(orderId);
+    @PutMapping("/accept/{orderID}")
+    OrderResponse accept(String orderId, @RequestBody Date estimatedReadyTime) {
+        Order order = processOrdersService.acceptOrder(orderId, estimatedReadyTime);
 
         OrderResponse orderResponse = modelMapper.map(order, OrderResponse.class);
 

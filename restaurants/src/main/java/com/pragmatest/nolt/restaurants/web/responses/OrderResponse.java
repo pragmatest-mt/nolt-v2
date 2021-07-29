@@ -1,7 +1,6 @@
 package com.pragmatest.nolt.restaurants.web.responses;
 
 import com.pragmatest.nolt.restaurants.enums.OrderState;
-import com.pragmatest.nolt.restaurants.service.models.OrderItem;
 
 import java.util.Date;
 import java.util.List;
