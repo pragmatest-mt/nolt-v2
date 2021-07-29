@@ -32,12 +32,12 @@ public class OrdersControllerUnitTest {
     @Test
     public void testSubmitOrderValidOrder() {
         //Arrange
-        String userId = "1";
-        String orderId = java.util.UUID.randomUUID().toString();
+        String userId = "a6bb292e-f08b-11eb-9a03-0242ac130003";
+        String orderId = "f615f211-2d00-4e58-aa60-3d24013e0542";
 
         List<OrderItem> orderItems = new ArrayList<>();
-        orderItems.add(new OrderItem("pizza", 1, "note 1"));
-        orderItems.add(new OrderItem("burger", 2, "note 2"));
+        orderItems.add(new OrderItem("pizza margherita", 2));
+        orderItems.add(new OrderItem("burger", 1, "extra coleslaw"));
 
         Order orderInput = new Order(userId, orderItems);
 
@@ -48,9 +48,9 @@ public class OrdersControllerUnitTest {
 
         List<com.pragmatest.nolt.customers.web.requests.OrderItem> requestOrderItems = new ArrayList<>();
         requestOrderItems.add(
-                new com.pragmatest.nolt.customers.web.requests.OrderItem("pizza", 1, "note 1"));
+                new com.pragmatest.nolt.customers.web.requests.OrderItem("pizza margherita", 2));
         requestOrderItems.add(
-                new com.pragmatest.nolt.customers.web.requests.OrderItem("burger", 2, "note 2"));
+                new com.pragmatest.nolt.customers.web.requests.OrderItem("burger", 1, "extra coleslaw"));
 
         OrderRequest orderRequest = new OrderRequest(userId, requestOrderItems);
         OrderResponse expectedOrderResponse = new OrderResponse(orderId, userId, requestOrderItems);

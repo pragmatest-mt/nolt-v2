@@ -27,6 +27,7 @@ public class OrdersController {
 
        Order order = modelMapper.map(orderRequest, Order.class);
        order = ordersService.submitOrder(order);
+
        OrderResponse orderResponse = modelMapper.map(order, OrderResponse.class);
 
        return orderResponse;
