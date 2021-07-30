@@ -8,6 +8,99 @@
 	<version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+	<properties>
+		<java.version>11</java.version>
+		<spring-boot.version>2.5.3</spring-boot.version>
+		<cucumber.version>6.10.4</cucumber.version>
+	</properties>
+
+	<!-- Parent pom manages plugins for all submodules. These however need to be in submodule pom to be used. -->
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter</artifactId>
+				<version>${spring-boot.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<version>${spring-boot.version}</version>
+				<scope>test</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>org.junit.vintage</groupId>
+						<artifactId>junit-vintage-engine</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>io.cucumber</groupId>
+				<artifactId>cucumber-java</artifactId>
+				<version>${cucumber.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>io.cucumber</groupId>
+				<artifactId>cucumber-spring</artifactId>
+				<version>${cucumber.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>io.cucumber</groupId>
+				<artifactId>cucumber-junit</artifactId>
+				<version>${cucumber.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>net.masterthought</groupId>
+				<artifactId>cucumber-reporting</artifactId>
+				<version>5.5.4</version>
+				<scope>test</scope>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+
+		<!-- These plugins are automatically inherited by all submodules. -->
+		<plugins>
+			<!-- Override java version from 1.6 to 1.11. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<release>11</release>
+				</configuration>
+			</plugin>
+		</plugins>
+
+		<!-- Parent pom manages plugins for all submodules. These however need to be in submodule pom to be used. -->
+		<pluginManagement>
+			<plugins>
+				<!--
+				Can create jar files with all application dependencies that can be run with java -jar
+				Helps start application before integration tests
+				Helps build docker images
+				-->
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>${spring-boot.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+	</build>
+
     <modules>
 		<module>nolt-end2end-tests</module>
 	</modules>
