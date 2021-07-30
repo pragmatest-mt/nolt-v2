@@ -9,5 +9,6 @@
     <packaging>pom</packaging>
 
     <modules>
+		<module>nolt-end2end-tests</module>
 	</modules>
 </project>
