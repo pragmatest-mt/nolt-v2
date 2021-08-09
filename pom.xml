@@ -108,6 +108,6 @@
 	</build>
 
     <modules>
-		<module>nolt-end2end-tests</module>
+		<module>nolt-specifications</module>
 	</modules>
 </project>

@@ -1,8 +1,8 @@
 package com.pragmatest.nolt.e2e.tests.common.services.customers;
 
-import com.pragmatest.nolt.contracts.customers.GetCustomerOrderResponse;
-import com.pragmatest.nolt.contracts.restaurants.SubmitCustomerOrderRequest;
-import com.pragmatest.nolt.contracts.restaurants.SubmitCustomerOrderResponse;
+import com.pragmatest.nolt.e2e.tests.common.models.customers.GetCustomerOrderResponse;
+import com.pragmatest.nolt.e2e.tests.common.models.restaurants.SubmitCustomerOrderRequest;
+import com.pragmatest.nolt.e2e.tests.common.models.restaurants.SubmitCustomerOrderResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -13,7 +13,6 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Collections;
 
 @Component
-@ConditionalOnProperty(value = "stubs.customers.enabled", havingValue = "false", matchIfMissing = true)
 public class CustomerOrderServiceImpl implements CustomerOrderService {
 
     @Value(value = "${customer-service.get-customer-order.template}")

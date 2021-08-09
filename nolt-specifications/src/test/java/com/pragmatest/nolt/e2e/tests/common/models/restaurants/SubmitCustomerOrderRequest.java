@@ -1,6 +1,6 @@
-package com.pragmatest.nolt.contracts.restaurants;
+package com.pragmatest.nolt.e2e.tests.common.models.restaurants;
 
-import com.pragmatest.nolt.contracts.OrderItem;
+import com.pragmatest.nolt.e2e.tests.common.models.OrderItem;
 
 import java.util.List;
 

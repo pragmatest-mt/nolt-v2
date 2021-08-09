@@ -7,10 +7,10 @@ import org.springframework.stereotype.Component;
 @ScenarioScope
 public class Order {
 
-    public String orderId;
-    public String customerId;
-    public String restaurantId;
-    public OrderState state;
+    private String orderId;
+    private String customerId;
+    private String restaurantId;
+    private OrderState state;
 
     public String getOrderId() {
         return orderId;

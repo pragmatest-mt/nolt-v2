@@ -1,7 +1,7 @@
 package com.pragmatest.nolt.e2e.tests.stepdefinitions;
 
-import com.pragmatest.nolt.contracts.customers.AcceptOrderRequest;
-import com.pragmatest.nolt.e2e.tests.common.services.restaurants.RestaurantOrderServiceImpl;
+import com.pragmatest.nolt.e2e.tests.common.models.customers.AcceptOrderRequest;
+import com.pragmatest.nolt.e2e.tests.common.services.restaurants.ResturantsOrderService;
 import com.pragmatest.nolt.e2e.tests.common.state.Order;
 import io.cucumber.java.en.When;
 import org.junit.platform.commons.PreconditionViolationException;
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ResturantOrderAcceptanceSteps {
 
     @Autowired
-    RestaurantOrderServiceImpl resturantOrderService;
+    ResturantsOrderService resturantOrderService;
 
     @Autowired
     Order order;

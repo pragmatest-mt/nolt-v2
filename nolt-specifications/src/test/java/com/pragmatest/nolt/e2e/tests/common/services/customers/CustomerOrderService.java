@@ -1,8 +1,8 @@
 package com.pragmatest.nolt.e2e.tests.common.services.customers;
 
-import com.pragmatest.nolt.contracts.customers.GetCustomerOrderResponse;
-import com.pragmatest.nolt.contracts.restaurants.SubmitCustomerOrderRequest;
-import com.pragmatest.nolt.contracts.restaurants.SubmitCustomerOrderResponse;
+import com.pragmatest.nolt.e2e.tests.common.models.customers.GetCustomerOrderResponse;
+import com.pragmatest.nolt.e2e.tests.common.models.restaurants.SubmitCustomerOrderRequest;
+import com.pragmatest.nolt.e2e.tests.common.models.restaurants.SubmitCustomerOrderResponse;
 import org.springframework.http.ResponseEntity;
 
 public interface CustomerOrderService {

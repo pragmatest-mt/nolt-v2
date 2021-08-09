@@ -1,4 +1,4 @@
-package com.pragmatest.nolt.contracts;
+package com.pragmatest.nolt.e2e.tests.common.models;
 
 public class OrderItem {
 

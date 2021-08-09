@@ -1,8 +1,8 @@
 package com.pragmatest.nolt.e2e.tests.stepdefinitions;
 
-import com.pragmatest.nolt.contracts.OrderItem;
-import com.pragmatest.nolt.contracts.restaurants.SubmitCustomerOrderRequest;
-import com.pragmatest.nolt.contracts.restaurants.SubmitCustomerOrderResponse;
+import com.pragmatest.nolt.e2e.tests.common.models.OrderItem;
+import com.pragmatest.nolt.e2e.tests.common.models.restaurants.SubmitCustomerOrderRequest;
+import com.pragmatest.nolt.e2e.tests.common.models.restaurants.SubmitCustomerOrderResponse;
 import com.pragmatest.nolt.e2e.tests.common.services.customers.CustomerOrderService;
 import com.pragmatest.nolt.e2e.tests.common.state.Order;
 import com.pragmatest.nolt.e2e.tests.common.state.OrderState;
@@ -20,6 +20,7 @@ public class CustomerOrderSubmissionSteps {
 
     @Autowired
     Order order;
+
     @Given("a customer submits an order to a restaurant")
     public void aCustomerSubmitsAnOrderToARestaurant() {
         String customerId = "test-".concat(UUID.randomUUID().toString());
