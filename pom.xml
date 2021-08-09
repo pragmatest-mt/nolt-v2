@@ -85,13 +85,14 @@
 				<version>3.8.1</version>
 				<configuration>
 					<release>11</release>
+					<source>11</source>
+					<target>11</target>
 				</configuration>
 			</plugin>
 		</plugins>
 
 		<!-- Parent pom manages plugins for all submodules. These however need to be in submodule pom to be used. -->
-		<pluginManagement>
-			<plugins>
+		<pluginManagement>			<plugins>
 				<!--
 				Can create jar files with all application dependencies that can be run with java -jar
 				Helps start application before integration tests

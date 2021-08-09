@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>nolt-end2end-tests</artifactId>
+    <artifactId>nolt-specifications</artifactId>
 
     <dependencies>
 

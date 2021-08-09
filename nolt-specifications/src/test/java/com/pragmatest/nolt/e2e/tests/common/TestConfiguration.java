@@ -31,10 +31,4 @@ public class TestConfiguration {
         return restTemplate;
     }
 
-    private List<HttpMessageConverter<?>> getJsonMessageConverters() {
-        List<HttpMessageConverter<?>> converters = new ArrayList<>();
-        converters.add(new MappingJackson2HttpMessageConverter());
-        return converters;
-    }
-
 }
