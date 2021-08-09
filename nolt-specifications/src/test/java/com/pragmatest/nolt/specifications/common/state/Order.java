@@ -1,4 +1,4 @@
-package com.pragmatest.nolt.e2e.tests.common.state;
+package com.pragmatest.nolt.specifications.common.state;
 
 import io.cucumber.spring.ScenarioScope;
 import org.springframework.stereotype.Component;

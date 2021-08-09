@@ -1,4 +1,4 @@
-package com.pragmatest.nolt.e2e.tests.common;
+package com.pragmatest.nolt.specifications.common;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
