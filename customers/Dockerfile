@@ -5,7 +5,8 @@ WORKDIR /app/customers
 COPY ./customers/pom.xml ./pom.xml
 RUN mvn dependency:go-offline
 
+COPY ./customers/src/ ./src/
+
 RUN mvn test
 
-COPY ./customers/src/ ./src/
 CMD ["mvn","spring-boot:run"]
