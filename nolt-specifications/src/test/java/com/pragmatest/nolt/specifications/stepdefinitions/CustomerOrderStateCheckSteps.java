@@ -31,8 +31,6 @@ public class CustomerOrderStateCheckSteps {
         GetCustomerOrderResponse customerOrderResponse = customerOrderResponseEntity.getBody();
 
         assertNotNull(customerOrderResponse);
-        assertEquals(customerId, customerOrderResponse.getCustomerId());
-        assertEquals(orderId, customerOrderResponse.getId());
         assertEquals(expectedState, customerOrderResponse.getState());
     }
 

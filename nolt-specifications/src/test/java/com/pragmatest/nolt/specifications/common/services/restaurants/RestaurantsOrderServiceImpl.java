@@ -1,7 +1,5 @@
 package com.pragmatest.nolt.specifications.common.services.restaurants;
 
-import com.pragmatest.nolt.specifications.common.models.customers.CustomerSubmitOrderRequest;
-import com.pragmatest.nolt.specifications.common.models.customers.CustomerSubmitOrderResponse;
 import com.pragmatest.nolt.specifications.common.models.restaurants.RestaurantAcceptOrderRequest;
 import com.pragmatest.nolt.specifications.common.models.restaurants.RestaurantAcceptOrderResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +25,7 @@ public class RestaurantsOrderServiceImpl implements ResturantsOrderService{
 
         ResponseEntity<RestaurantAcceptOrderResponse> customerSubmitOrderResponseResponseEntity = restTemplate.exchange(
                 acceptRestaurantOrderUrl, HttpMethod.POST,
-                requestEntity, RestaurantAcceptOrderResponse.class);
+                requestEntity, RestaurantAcceptOrderResponse.class, orderId);
 
         return customerSubmitOrderResponseResponseEntity;
     }

@@ -1,13 +1,23 @@
 package com.pragmatest.nolt.specifications.common.models.restaurants;
 
-public class RestaurantAcceptOrderRequest {
-    private String estimatedDeliveryTime;
+import org.joda.time.DateTime;
 
-    public String getEstimatedDeliveryTime() {
+public class RestaurantAcceptOrderRequest {
+
+    private DateTime estimatedDeliveryTime;
+
+    public RestaurantAcceptOrderRequest(DateTime estimatedDeliveryTime) {
+        this.estimatedDeliveryTime = estimatedDeliveryTime;
+    }
+
+    public RestaurantAcceptOrderRequest() {
+    }
+
+    public DateTime getEstimatedDeliveryTime() {
         return estimatedDeliveryTime;
     }
 
-    public void setEstimatedDeliveryTime(String estimatedDeliveryTime) {
+    public void setEstimatedDeliveryTime(DateTime estimatedDeliveryTime) {
         this.estimatedDeliveryTime = estimatedDeliveryTime;
     }
 }
