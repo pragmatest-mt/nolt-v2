@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static com.pragmatest.nolt.customer_orders.helpers.Assertions.*;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -46,5 +47,4 @@ public class CustomerOrdersControllerTests {
             fail(id + " is not a valid UUID.");
         }
     }
-
 }

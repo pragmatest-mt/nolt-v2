@@ -18,4 +18,5 @@ public class SubmitOrderResponse {
     public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
+
 }
