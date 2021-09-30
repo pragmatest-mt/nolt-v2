@@ -11,7 +11,7 @@ import java.util.UUID;
 public class CustomerOrdersController {
 
     @PostMapping("orders")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.CREATED)
     public SubmitOrderResponse submit(@RequestHeader(name = "X-Customer-Id") String customerId, @RequestBody SubmitOrderRequest request) {
         String orderId = UUID.randomUUID().toString();
         return new SubmitOrderResponse(orderId);
