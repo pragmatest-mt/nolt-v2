@@ -36,7 +36,7 @@ public class CustomerOrdersControllerTests {
 
         assertNotNull(actualResponse, "Response is null.");
 
-        String id = actualResponse.getId();
+        String id = actualResponse.getOrderId();
         assertNotNull(id, "Id in response is null.");
 
         try {
