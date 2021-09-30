@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import static com.pragmatest.nolt.customer_orders.helpers.Assertions.*;
+
 @SpringBootTest
 @ActiveProfiles("test")
 public class CustomerOrdersControllerTests {
@@ -12,5 +14,4 @@ public class CustomerOrdersControllerTests {
     public void testSubmitOrderValidOrder() {
 
     }
-
 }
