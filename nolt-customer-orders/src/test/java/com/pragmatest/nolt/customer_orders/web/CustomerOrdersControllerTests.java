@@ -40,11 +40,6 @@ public class CustomerOrdersControllerTests {
         String id = actualResponse.getOrderId();
         assertNotNull(id, "Id in response is null.");
 
-        try {
-            UUID uuid = UUID.fromString(id);
-            assertEquals(id, uuid.toString());
-        } catch(IllegalArgumentException e) {
-            fail(id + " is not a valid UUID.");
-        }
+        assertIsValidUuid(id);
     }
 }
