@@ -13,6 +13,7 @@ public class CustomerOrdersController {
     @PostMapping("orders")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public SubmitOrderResponse submit(@RequestHeader(name = "X-Customer-Id") String customerId, @RequestBody SubmitOrderRequest request) {
-        return new SubmitOrderResponse(UUID.randomUUID().toString());
+        String orderId = UUID.randomUUID().toString();
+        return new SubmitOrderResponse(orderId);
     }
 }
