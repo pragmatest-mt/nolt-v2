@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CustomerOrdersController {
 
     @PostMapping("orders")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.CREATED)
     String submit() {
         return "Submitted";
     }
