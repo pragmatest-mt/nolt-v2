@@ -4,8 +4,8 @@ public class SubmitOrderResponse {
 
     private String orderId;
 
-    public SubmitOrderResponse(String id) {
-        this.orderId = id;
+    public SubmitOrderResponse(String orderId) {
+        this.orderId = orderId;
     }
 
     public SubmitOrderResponse() {
