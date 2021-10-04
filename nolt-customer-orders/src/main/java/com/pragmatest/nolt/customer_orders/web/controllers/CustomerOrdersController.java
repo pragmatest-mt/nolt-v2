@@ -1,16 +1,17 @@
 package com.pragmatest.nolt.customer_orders.web.controllers;
 
+import com.pragmatest.nolt.customer_orders.web.requests.SubmitOrderRequest;
+import com.pragmatest.nolt.customer_orders.web.responses.SubmitOrderResponse;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class CustomerOrdersController {
 
-    @PostMapping("orders")
+    @PostMapping(value = "orders", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    String submit() {
-        return "Submitted";
+    public SubmitOrderResponse submit(@RequestHeader(name = "X-Customer-Id") String customerId, @RequestBody SubmitOrderRequest request) {
+        return null;
     }
 }
