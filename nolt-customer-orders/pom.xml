@@ -103,30 +103,30 @@
 
     <build>
         <plugins>
-            <!-- activate the plugin -->
-            <plugin>
-                <groupId>org.openapitools</groupId>
-                <artifactId>openapi-generator-maven-plugin</artifactId>
-                <!-- RELEASE_VERSION -->
-                <version>5.4.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>
-                            <generatorName>spring</generatorName>
-                            <apiPackage>com.pragmatest.nolt.customer_orders.web.controllers</apiPackage>
-                            <modelPackage>com.pragmatest.nolt.customer_orders.web.models</modelPackage>
-                            <configOptions>
-                                <delegatePattern>true</delegatePattern>
-                                <sourceFolder>src/main/java</sourceFolder>
-                            </configOptions>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+<!-- TODO - Activate the plugin. -->
+<!--            <plugin>-->
+<!--                <groupId>org.openapitools</groupId>-->
+<!--                <artifactId>openapi-generator-maven-plugin</artifactId>-->
+<!--                &lt;!&ndash; RELEASE_VERSION &ndash;&gt;-->
+<!--                <version>5.4.0</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>generate</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>-->
+<!--                            <generatorName>spring</generatorName>-->
+<!--                            <apiPackage>com.pragmatest.nolt.customer_orders.web.controllers</apiPackage>-->
+<!--                            <modelPackage>com.pragmatest.nolt.customer_orders.web.models</modelPackage>-->
+<!--                            <configOptions>-->
+<!--                                <delegatePattern>true</delegatePattern>-->
+<!--                                <sourceFolder>src/main/java</sourceFolder>-->
+<!--                            </configOptions>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 
