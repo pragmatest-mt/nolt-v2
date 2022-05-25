@@ -16,4 +16,6 @@ public class CustomerServiceDelegate implements CustomerServiceApiDelegate {
         return ResponseEntity.ok(new SubmitOrderResponse().orderId(orderId));
     }
 
+    // TODO - 3. Add new method to delegate to override the get method in the interface. This method should return a hardcoded order for now.
+
 }

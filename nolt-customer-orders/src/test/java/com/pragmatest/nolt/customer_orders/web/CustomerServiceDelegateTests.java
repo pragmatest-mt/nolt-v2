@@ -46,4 +46,21 @@ public class CustomerServiceDelegateTests {
 
         assertIsValidUuid(id);
     }
+
+    // TODO 2. Start writing test verifying that when the get order method is called from the delegate, a valid order is retrieved.
+    @Test
+    public void testGetOrderValidId() {
+
+        // Arrange
+
+        // TODO 2.a. Generate fake customerId and orderId.
+
+        // Act
+
+        // TODO 2.b. Call the get order method from the delegate and save the response in a variable.
+
+        // Assert
+
+        // TODO 2.c. Assert that a valid order is returned.
+    }
 }
