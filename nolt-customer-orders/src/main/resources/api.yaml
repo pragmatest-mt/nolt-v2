@@ -30,9 +30,53 @@ paths:
                 application/json:
                   value:
                     orderId: 9c26f0e6-7f1d-480c-8ca5-3f9c21208b96
-  # TODO - 1. Add contract for get order by id endpoint and run 'mvn compile' in the root directory of the project to generate the sources.
+  /customer-service/orders/{orderId}:
+    get:
+      summary: Gets an order for a customer
+      operationId: get-customer-order
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: X-Customer-Id
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Order
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetOrderResponse"
+              examples:
+                application/json:
+                  value:
+                    orderId: 8488e986-b848-4e87-891a-43252f36ba0c
+                    customerId: 018777ce-8730-46ae-800c-9a1e950e05c0
+                    state: Submitted
+                    orderItems:
+                      - menuItemId: burger
+                        quantity: 10
+                        notes: no coleslaw
 components:
   schemas:
+    GetOrderResponse:
+      required:
+        - orderId
+      properties:
+        id:
+          type: string
+        customerId:
+          type: string
+        state:
+          type: string
+        orderItems:
+          items:
+            $ref: '#/components/schemas/OrderItem'
     SubmitOrderRequest:
       properties:
         orderItems:

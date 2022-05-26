@@ -1,10 +1,13 @@
 package com.pragmatest.nolt.customer_orders.web.controllers;
 
+import com.pragmatest.nolt.customer_orders.web.models.GetOrderResponse;
+import com.pragmatest.nolt.customer_orders.web.models.OrderItem;
 import com.pragmatest.nolt.customer_orders.web.models.SubmitOrderRequest;
 import com.pragmatest.nolt.customer_orders.web.models.SubmitOrderResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -16,6 +19,20 @@ public class CustomerServiceDelegate implements CustomerServiceApiDelegate {
         return ResponseEntity.ok(new SubmitOrderResponse().orderId(orderId));
     }
 
-    // TODO - 3. Add new method to delegate to override the get method in the interface. This method should return a hardcoded order for now.
+    @Override
+    public ResponseEntity<GetOrderResponse> getCustomerOrder(String orderId, String xCustomerId) {
+        List<OrderItem> orderItems = List.of(
+                new OrderItem()
+                        .quantity(1)
+                        .menuItemId("burger")
+                        .notes("extra lettuce")
+        );
 
+        GetOrderResponse getOrderResponse = new GetOrderResponse()
+                .customerId(xCustomerId)
+                .id(orderId)
+                .orderItems(orderItems);
+
+        return ResponseEntity.ok(getOrderResponse);
+    }
 }

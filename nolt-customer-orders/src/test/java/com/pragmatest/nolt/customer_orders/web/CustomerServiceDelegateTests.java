@@ -1,6 +1,8 @@
 package com.pragmatest.nolt.customer_orders.web;
 
+import com.pragmatest.nolt.customer_orders.CustomerOrdersApplication;
 import com.pragmatest.nolt.customer_orders.web.controllers.CustomerServiceDelegate;
+import com.pragmatest.nolt.customer_orders.web.models.GetOrderResponse;
 import com.pragmatest.nolt.customer_orders.web.models.OrderItem;
 import com.pragmatest.nolt.customer_orders.web.models.SubmitOrderRequest;
 import com.pragmatest.nolt.customer_orders.web.models.SubmitOrderResponse;
@@ -16,7 +18,7 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 import static com.pragmatest.nolt.customer_orders.helpers.Assertions.*;
 
-@SpringBootTest
+@SpringBootTest(classes = CustomerOrdersApplication.class)
 @ActiveProfiles("test")
 public class CustomerServiceDelegateTests {
 
@@ -47,20 +49,23 @@ public class CustomerServiceDelegateTests {
         assertIsValidUuid(id);
     }
 
-    // TODO 2. Start writing test verifying that when the get order method is called from the delegate, a valid order is retrieved.
     @Test
     public void testGetOrderValidId() {
 
         // Arrange
 
-        // TODO 2.a. Generate fake customerId and orderId.
+        String orderId = UUID.randomUUID().toString();
+        String customerId = UUID.randomUUID().toString();
 
         // Act
 
-        // TODO 2.b. Call the get order method from the delegate and save the response in a variable.
+        ResponseEntity<GetOrderResponse> actualResponse = customerServiceDelegate.getCustomerOrder(orderId, customerId);
 
         // Assert
 
-        // TODO 2.c. Assert that a valid order is returned.
+        assertNotNull(actualResponse, "Response is null.");
+        assertEquals(orderId, actualResponse.getBody().getId());
+        assertEquals(customerId, actualResponse.getBody().getCustomerId());
+
     }
 }
