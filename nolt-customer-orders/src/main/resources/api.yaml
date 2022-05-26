@@ -1,8 +1,4 @@
 openapi: 3.0.0
-servers:
-  # Added by API Auto Mocking Plugin
-  - description: SwaggerHub API Auto Mocking
-    url: https://virtserver.swaggerhub.com/pragma65/nolt-course/1.0.0
 info:
   description: A food ordering and delivery platform
   version: "1.0.0"
