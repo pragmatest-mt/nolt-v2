@@ -1,6 +1,7 @@
 package com.pragmatest.nolt.customer_orders.web;
 
 import com.pragmatest.nolt.customer_orders.CustomerOrdersApplication;
+import com.pragmatest.nolt.customer_orders.services.CustomerOrdersService;
 import com.pragmatest.nolt.customer_orders.web.controllers.CustomerServiceDelegate;
 import com.pragmatest.nolt.customer_orders.web.models.GetOrderResponse;
 import com.pragmatest.nolt.customer_orders.web.models.OrderItem;
@@ -9,6 +10,7 @@ import com.pragmatest.nolt.customer_orders.web.models.SubmitOrderResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -17,6 +19,7 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static com.pragmatest.nolt.customer_orders.helpers.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest(classes = CustomerOrdersApplication.class)
 @ActiveProfiles("test")
@@ -24,6 +27,9 @@ public class CustomerServiceDelegateTests {
 
     @Autowired
     CustomerServiceDelegate customerServiceDelegate;
+
+    @MockBean
+    CustomerOrdersService customerOrdersServiceMock;
 
     @Test
     public void testSubmitOrderValidOrder() {
@@ -34,6 +40,9 @@ public class CustomerServiceDelegateTests {
                 .orderItems(
                         List.of(new OrderItem().menuItemId("burger").quantity(1).notes("no lettuce"))
                 );
+
+        String expectedOrderId = UUID.randomUUID().toString();
+        when(customerOrdersServiceMock.submitOrder()).thenReturn(expectedOrderId);
 
         // Act
 
@@ -46,7 +55,8 @@ public class CustomerServiceDelegateTests {
         String id = actualResponse.getBody().getOrderId();
         assertNotNull(id, "Id in response is null.");
 
-        assertIsValidUuid(id);
+        assertEquals(expectedOrderId, id);
+        verify(customerOrdersServiceMock, times(1)).submitOrder();
     }
 
     @Test

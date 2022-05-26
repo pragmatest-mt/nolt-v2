@@ -1,9 +1,11 @@
 package com.pragmatest.nolt.customer_orders.web.controllers;
 
+import com.pragmatest.nolt.customer_orders.services.CustomerOrdersService;
 import com.pragmatest.nolt.customer_orders.web.models.GetOrderResponse;
 import com.pragmatest.nolt.customer_orders.web.models.OrderItem;
 import com.pragmatest.nolt.customer_orders.web.models.SubmitOrderRequest;
 import com.pragmatest.nolt.customer_orders.web.models.SubmitOrderResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +15,12 @@ import java.util.UUID;
 @Service
 public class CustomerServiceDelegate implements CustomerServiceApiDelegate {
 
+    @Autowired
+    CustomerOrdersService customerOrdersService;
+
     @Override
     public ResponseEntity<SubmitOrderResponse> customerServiceOrdersPost(String xCustomerId, SubmitOrderRequest submitOrderRequest) {
-        String orderId = UUID.randomUUID().toString();
+        String orderId = customerOrdersService.submitOrder();
         return ResponseEntity.ok(new SubmitOrderResponse().orderId(orderId));
     }
 
