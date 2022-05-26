@@ -13,5 +13,5 @@ public class CustomerOrdersService {
         return order.getId();
     }
 
-    // TODO - 1. Implement getOrder(id) method that returns the hardcoded order currently being returned by the delegate.
+    // TODO - 1. Implement getOrder(id) method that returns a hardcoded com.pragmatest.nolt.customer_orders.services.models.Order.
 }
