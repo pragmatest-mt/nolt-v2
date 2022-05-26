@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.util.UUID;
+
 import static com.pragmatest.nolt.customer_orders.helpers.Assertions.assertIsValidUuid;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.ArgumentMatchers.any;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -30,5 +32,18 @@ class CustomerOrdersServiceTests {
         assertIsValidUuid(id);
     }
 
-    // TODO - 5. Add test to verify that the getOrder(id) method from the service layer returns a valid order.
+    @Test
+    public void testGetOrder() {
+        // Arrange
+        String orderId = UUID.randomUUID().toString();
+        String customerId = UUID.randomUUID().toString();
+
+        // Act
+        Order order = customerOrdersService.getOrder(orderId, customerId);
+
+        // Assert
+        assertNotNull(order);
+        assertEquals(orderId, order.getId());
+        assertEquals(customerId, order.getCustomerId());
+    }
 }

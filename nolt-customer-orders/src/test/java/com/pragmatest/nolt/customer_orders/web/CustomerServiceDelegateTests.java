@@ -18,6 +18,7 @@ import org.springframework.test.context.ActiveProfiles;
 import java.util.List;
 import java.util.UUID;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -62,12 +63,17 @@ public class CustomerServiceDelegateTests {
 
     @Test
     public void testGetOrderValidId() {
-        // TODO - 3. Update test to use mocked service layer and assert that the controller layer returns the order returned by the mock.
-        // TODO - 4. Verify that the mocked service layer is called exactly once.
         // Arrange
 
         String orderId = UUID.randomUUID().toString();
         String customerId = UUID.randomUUID().toString();
+
+        Order order = new Order();
+        order.setId(orderId);
+        order.setCustomerId(customerId);
+        order.setOrderItems(List.of(new com.pragmatest.nolt.customer_orders.services.models.OrderItem()));
+
+        when(customerOrdersServiceMock.getOrder(orderId, customerId)).thenReturn(order);
 
         // Act
 
@@ -76,8 +82,7 @@ public class CustomerServiceDelegateTests {
         // Assert
 
         assertNotNull(actualResponse, "Response is null.");
-        assertEquals(orderId, actualResponse.getBody().getId());
-        assertEquals(customerId, actualResponse.getBody().getCustomerId());
-
+        assertThat(order).usingRecursiveComparison().isEqualTo(actualResponse.getBody());
+        verify(customerOrdersServiceMock, times(1)).getOrder(orderId, customerId);
     }
 }

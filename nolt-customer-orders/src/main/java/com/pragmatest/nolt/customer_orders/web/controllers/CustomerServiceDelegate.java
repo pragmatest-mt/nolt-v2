@@ -32,19 +32,8 @@ public class CustomerServiceDelegate implements CustomerServiceApiDelegate {
 
     @Override
     public ResponseEntity<GetOrderResponse> getCustomerOrder(String orderId, String xCustomerId) {
-        // TODO - 2. Replace code here to call the getOrder(id) method from the service layer.
-        List<OrderItem> orderItems = List.of(
-                new OrderItem()
-                    .quantity(1)
-                    .menuItemId("burger")
-                    .notes("extra lettuce")
-        );
-
-        GetOrderResponse getOrderResponse = new GetOrderResponse()
-                .customerId(xCustomerId)
-                .id(orderId)
-                .orderItems(orderItems);
-
+        Order order = customerOrdersService.getOrder(orderId, xCustomerId);
+        GetOrderResponse getOrderResponse = modelMapper.map(order, GetOrderResponse.class);
         return ResponseEntity.ok(getOrderResponse);
     }
 }
