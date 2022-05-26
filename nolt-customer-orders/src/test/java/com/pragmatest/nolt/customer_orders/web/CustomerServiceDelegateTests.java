@@ -62,7 +62,8 @@ public class CustomerServiceDelegateTests {
 
     @Test
     public void testGetOrderValidId() {
-
+        // TODO - 3. Update test to use mocked service layer and assert that the controller layer returns the order returned by the mock.
+        // TODO - 4. Verify that the mocked service layer is called exactly once.
         // Arrange
 
         String orderId = UUID.randomUUID().toString();

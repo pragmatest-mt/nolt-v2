@@ -12,4 +12,6 @@ public class CustomerOrdersService {
         order.setId(UUID.randomUUID().toString());
         return order.getId();
     }
+
+    // TODO - 1. Implement getOrder(id) method that returns the hardcoded order currently being returned by the delegate.
 }

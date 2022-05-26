@@ -29,4 +29,6 @@ class CustomerOrdersServiceTests {
         assertNotNull(id, "Id in response is null.");
         assertIsValidUuid(id);
     }
+
+    // TODO - 5. Add test to verify that the getOrder(id) method from the service layer returns a valid order.
 }

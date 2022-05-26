@@ -32,6 +32,7 @@ public class CustomerServiceDelegate implements CustomerServiceApiDelegate {
 
     @Override
     public ResponseEntity<GetOrderResponse> getCustomerOrder(String orderId, String xCustomerId) {
+        // TODO - 2. Replace code here to call the getOrder(id) method from the service layer.
         List<OrderItem> orderItems = List.of(
                 new OrderItem()
                     .quantity(1)
