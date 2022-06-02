@@ -2,6 +2,7 @@ package com.pragmatest.nolt.customer_orders.web;
 
 import com.pragmatest.nolt.customer_orders.CustomerOrdersApplication;
 import com.pragmatest.nolt.customer_orders.services.CustomerOrdersService;
+import com.pragmatest.nolt.customer_orders.services.models.Order;
 import com.pragmatest.nolt.customer_orders.web.controllers.CustomerServiceDelegate;
 import com.pragmatest.nolt.customer_orders.web.models.GetOrderResponse;
 import com.pragmatest.nolt.customer_orders.web.models.OrderItem;
@@ -18,7 +19,6 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static com.pragmatest.nolt.customer_orders.helpers.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest(classes = CustomerOrdersApplication.class)
@@ -42,7 +42,8 @@ public class CustomerServiceDelegateTests {
                 );
 
         String expectedOrderId = UUID.randomUUID().toString();
-        when(customerOrdersServiceMock.submitOrder()).thenReturn(expectedOrderId);
+
+        when(customerOrdersServiceMock.submitOrder(any(Order.class))).thenReturn(expectedOrderId);
 
         // Act
 
@@ -56,7 +57,7 @@ public class CustomerServiceDelegateTests {
         assertNotNull(id, "Id in response is null.");
 
         assertEquals(expectedOrderId, id);
-        verify(customerOrdersServiceMock, times(1)).submitOrder();
+        verify(customerOrdersServiceMock, times(1)).submitOrder(any(Order.class));
     }
 
     @Test
