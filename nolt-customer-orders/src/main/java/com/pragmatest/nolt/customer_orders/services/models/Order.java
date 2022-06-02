@@ -4,16 +4,16 @@ import java.util.List;
 
 public class Order {
 
-    private String orderId;
+    private String id;
     private String customerId;
     private List<OrderItem> orderItems;
 
-    public String getOrderId() {
-        return orderId;
+    public String getId() {
+        return id;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCustomerId() {

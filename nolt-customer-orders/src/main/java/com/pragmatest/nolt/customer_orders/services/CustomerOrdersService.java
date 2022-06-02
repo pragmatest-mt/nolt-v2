@@ -9,7 +9,7 @@ import java.util.UUID;
 public class CustomerOrdersService {
 
     public String submitOrder(Order order) {
-        order.setOrderId(UUID.randomUUID().toString());
-        return order.getOrderId();
+        order.setId(UUID.randomUUID().toString());
+        return order.getId();
     }
 }
