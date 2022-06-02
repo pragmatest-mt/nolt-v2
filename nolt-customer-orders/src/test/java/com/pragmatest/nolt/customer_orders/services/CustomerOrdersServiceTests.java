@@ -11,6 +11,7 @@ import java.util.UUID;
 import static com.pragmatest.nolt.customer_orders.helpers.Assertions.assertIsValidUuid;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 
 @SpringBootTest
 @ActiveProfiles("test")
