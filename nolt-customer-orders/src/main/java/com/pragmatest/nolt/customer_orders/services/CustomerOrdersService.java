@@ -9,9 +9,7 @@ import java.util.UUID;
 public class CustomerOrdersService {
 
     public String submitOrder(Order order) {
-        order.setId(UUID.randomUUID().toString());
-        return order.getId();
+        order.setOrderId(UUID.randomUUID().toString());
+        return order.getOrderId();
     }
-
-    // TODO - 1. Implement getOrder(id) method that returns a hardcoded com.pragmatest.nolt.customer_orders.services.models.Order.
 }
