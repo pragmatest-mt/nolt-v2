@@ -30,7 +30,9 @@ paths:
                 application/json:
                   value:
                     orderId: 9c26f0e6-7f1d-480c-8ca5-3f9c21208b96
-  # TODO - 1. Add contract for get order by id endpoint and run 'mvn compile' in the root directory of the project to generate the sources.
+  # TODO - 1. Update the contract and generate sources.
+  # TODO - 1.a Add contract for get order by id endpoint.
+  # TODO - 1.b Run 'mvn compile' command in the root directory of the project to generate the sources.
 components:
   schemas:
     SubmitOrderRequest:
