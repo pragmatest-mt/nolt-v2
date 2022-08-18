@@ -30,6 +30,9 @@ public class CustomerServiceDelegate implements CustomerServiceApiDelegate {
         return ResponseEntity.ok(new SubmitOrderResponse().orderId(orderId));
     }
 
+    // TODO - 5. Update the getCustomerOrder() to return HTTP Status Code 404 when the service layer returns null.
+    //  This implementation should be driven by the already implemented tests in TO DO 4.
+    //  This implementation is deemed completed once this test, and all the test suite, pass successfully.
     @Override
     public ResponseEntity<GetOrderResponse> getCustomerOrder(String orderId, String xCustomerId) {
         Order order = customerOrdersService.getOrder(orderId, xCustomerId);

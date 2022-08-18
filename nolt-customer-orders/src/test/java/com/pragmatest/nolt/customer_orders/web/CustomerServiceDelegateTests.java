@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -64,7 +65,6 @@ public class CustomerServiceDelegateTests {
     @Test
     public void testGetOrderValidId() {
         // Arrange
-
         String orderId = UUID.randomUUID().toString();
         String customerId = UUID.randomUUID().toString();
 
@@ -76,13 +76,37 @@ public class CustomerServiceDelegateTests {
         when(customerOrdersServiceMock.getOrder(orderId, customerId)).thenReturn(order);
 
         // Act
-
         ResponseEntity<GetOrderResponse> actualResponse = customerServiceDelegate.getCustomerOrder(orderId, customerId);
 
         // Assert
-
         assertNotNull(actualResponse, "Response is null.");
         assertThat(order).usingRecursiveComparison().isEqualTo(actualResponse.getBody());
+
+        verify(customerOrdersServiceMock, times(1)).getOrder(orderId, customerId);
+    }
+
+    // TODO - 4. Look at the following test, which verifies that HTTP Status Code 404 is returned when the null is returned
+    //  by the service layer.
+    @Test
+    public void testGetNonExistentOrder() {
+        // Arrange
+        String orderId = UUID.randomUUID().toString();
+        String customerId = UUID.randomUUID().toString();
+
+        Order order = new Order();
+        order.setId(orderId);
+        order.setCustomerId(customerId);
+        order.setOrderItems(List.of(new com.pragmatest.nolt.customer_orders.services.models.OrderItem()));
+
+        when(customerOrdersServiceMock.getOrder(orderId, customerId)).thenReturn(null);
+
+        // Act
+        ResponseEntity<GetOrderResponse> actualResponse = customerServiceDelegate.getCustomerOrder(orderId, customerId);
+
+        // Assert
+        assertNotNull(actualResponse, "Response is null.");
+        assertThat(actualResponse.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+
         verify(customerOrdersServiceMock, times(1)).getOrder(orderId, customerId);
     }
 }

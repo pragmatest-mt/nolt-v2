@@ -15,6 +15,10 @@ public class CustomerOrdersService {
         return order.getId();
     }
 
+    // TODO - 3. Update the getOrder() to use the repository layer to find an order with matching orderId and customerId,
+    //  instead of returning hard-coded values.
+    //  This implementation should be driven by the already implemented tests in TODOs 1. and 2.
+    //  This implementation is deemed completed once these tests pass successfully.
     public Order getOrder(String orderId, String customerId) {
         Order order = new Order();
         order.setCustomerId(customerId);
