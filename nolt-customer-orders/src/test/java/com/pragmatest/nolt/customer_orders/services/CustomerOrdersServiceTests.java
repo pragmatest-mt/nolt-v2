@@ -54,8 +54,6 @@ class CustomerOrdersServiceTests {
         verify(customerOrdersRepository, times(1)).save(any(OrderEntity.class));
     }
 
-    // TODO - 1. Look at the following test, which verifies that the relevant Order is returned when given an Order ID and a Customer ID.
-    //  It also verifies that the service layer is calling the repository layer to retrieve the order from the database.
     @Test
     public void testGetOrder() {
         // Arrange
@@ -88,7 +86,6 @@ class CustomerOrdersServiceTests {
         verify(customerOrdersRepository, times(1)).findOne(any(Example.class));
     }
 
-    // TODO - 2. Look at the following test, which verifies that null is returned when there is no matching order in the database.
     @Test
     public void testGetNonExistentOrder() {
         // Arrange

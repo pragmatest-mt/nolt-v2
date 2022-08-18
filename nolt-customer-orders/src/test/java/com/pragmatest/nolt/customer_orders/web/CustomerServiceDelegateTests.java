@@ -85,8 +85,6 @@ public class CustomerServiceDelegateTests {
         verify(customerOrdersServiceMock, times(1)).getOrder(orderId, customerId);
     }
 
-    // TODO - 4. Look at the following test, which verifies that HTTP Status Code 404 is returned when the null is returned
-    //  by the service layer.
     @Test
     public void testGetNonExistentOrder() {
         // Arrange

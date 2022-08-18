@@ -1,37 +1,45 @@
 package com.pragmatest.nolt.customer_orders.services;
 
+import com.pragmatest.nolt.customer_orders.data.entities.OrderEntity;
+import com.pragmatest.nolt.customer_orders.data.repositories.CustomerOrdersRepository;
 import com.pragmatest.nolt.customer_orders.services.models.Order;
-import com.pragmatest.nolt.customer_orders.services.models.OrderItem;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
 public class CustomerOrdersService {
 
+    @Autowired
+    CustomerOrdersRepository repository;
+
+    @Autowired
+    ModelMapper mapper;
+
     public String submitOrder(Order order) {
-        order.setId(UUID.randomUUID().toString());
-        return order.getId();
+        OrderEntity orderEntity = mapper.map(order, OrderEntity.class);
+        orderEntity.setId(UUID.randomUUID().toString());
+        orderEntity = repository.save(orderEntity);
+        return orderEntity.getId();
     }
 
-    // TODO - 3. Update the getOrder() to use the repository layer to find an order with matching orderId and customerId,
-    //  instead of returning hard-coded values.
-    //  This implementation should be driven by the already implemented tests in TODOs 1. and 2.
-    //  This implementation is deemed completed once these tests pass successfully.
     public Order getOrder(String orderId, String customerId) {
-        Order order = new Order();
-        order.setCustomerId(customerId);
+        OrderEntity orderEntityToFind = new OrderEntity();
+        orderEntityToFind.setCustomerId(customerId);
+        orderEntityToFind.setId(orderId);
 
-        OrderItem orderItem = new OrderItem();
-        orderItem.setQuantity(1);
-        orderItem.setMenuItemId("burger");
-        orderItem.setNotes("extra lettuce");
+        Optional<OrderEntity> retrievedOrderEntity =
+                repository.findOne(Example.of(orderEntityToFind, ExampleMatcher.matchingAll()));
 
-        List<OrderItem> orderItems = List.of(orderItem);
+        if (retrievedOrderEntity.isEmpty()) return null;
 
-        order.setOrderItems(orderItems);
-        order.setId(orderId);
+        Order order = mapper.map(retrievedOrderEntity.get(), Order.class);
+
         return order;
     }
 }
