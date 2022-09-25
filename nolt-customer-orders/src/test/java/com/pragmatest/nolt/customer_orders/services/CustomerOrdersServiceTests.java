@@ -118,8 +118,7 @@ class CustomerOrdersServiceTests {
             return leftOrderEntity != null && rightOrderEntity != null &&
                     leftOrderEntity.getCustomerId().equals(rightOrderEntity.getCustomerId()) &&
                     leftOrderEntity.getId().equals(rightOrderEntity.getId()) &&
-                    rightOrderEntity.getOrderItems() == null &&
-                    rightOrderEntity.getOrderState() == null;
+                    rightOrderEntity.getOrderItems() == null;
         }
     }
 }
