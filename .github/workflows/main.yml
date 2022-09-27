@@ -35,7 +35,7 @@ jobs:
       
       # Build Docker image
       - name: Build Docker image
-        run: docker build -f customers/Dockerfile . --tag ${{env.DOCKER_USER}}/nolt-customers:${{env.APP_VERSION}}
+        run: docker build -f nolt-customer-orders/Dockerfile . --tag ${{env.DOCKER_USER}}/nolt-customers:${{env.APP_VERSION}}
       
       # Push Docker image to repository
       - name: Push Docker image
